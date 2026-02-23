@@ -1,0 +1,5 @@
+- [x] `src/components/EventCard.tsx` exists and exports `EventCard`
+- [x] `src/components/ListItem.tsx` exists and exports `ListItem`
+- [x] `app/(tabs)/index.tsx` imports these components
+- [x] No inline component definitions in `index.tsx`
+- [x] App runs without errors and UI looks identical
