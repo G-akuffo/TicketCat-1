@@ -15,7 +15,6 @@ import {
   ImageBackground,
   Pressable,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -34,7 +33,7 @@ const MARKET_LISTINGS = [
     id: "1",
     title: "GARDEN GALA",
     tier: "GOLD",
-    price: "0.85 ETH",
+    price: "$2,550.00",
     seller: "OxAlpha",
     img: "https://images.unsplash.com/photo-1514525253344-a812df99a716?w=600",
   },
@@ -42,7 +41,7 @@ const MARKET_LISTINGS = [
     id: "2",
     title: "NEON MIDNIGHT",
     tier: "SILVER",
-    price: "0.42 ETH",
+    price: "$1,260.00",
     seller: "CryptoCat",
     img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600",
   },
@@ -50,7 +49,7 @@ const MARKET_LISTINGS = [
     id: "3",
     title: "SOLARIS FEST",
     tier: "GOLD",
-    price: "1.20 ETH",
+    price: "$3,600.00",
     seller: "VipVault",
     img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600",
   },
@@ -58,7 +57,7 @@ const MARKET_LISTINGS = [
     id: "4",
     title: "JAZZ EVENING",
     tier: "BRONZE",
-    price: "0.15 ETH",
+    price: "$450.00",
     seller: "JazzFan99",
     img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600",
   },
@@ -66,14 +65,16 @@ const MARKET_LISTINGS = [
 
 export default function MarketScreen() {
   return (
-    <View style={styles.container}>
+    <View className="flex-1 bg-background">
       {/* --- STICKY HEADER --- */}
-      <View style={styles.header}>
-        <View style={styles.headerTextContainer}>
-          <Text style={styles.headerSubtitle}>SECONDARY</Text>
-          <Text style={styles.headerTitle}>Market</Text>
+      <View className="flex-row items-center px-6 pt-[60px] pb-5 bg-background border-b border-border-elevated">
+        <View className="flex-1">
+          <Text className="text-txt-muted text-[10px] font-extrabold tracking-[2px]">
+            SECONDARY
+          </Text>
+          <Text className="text-txt-main text-[28px] font-black">Market</Text>
         </View>
-        <TouchableOpacity style={styles.iconButton}>
+        <TouchableOpacity className="w-[45px] h-[45px] rounded-[15px] bg-surface-raised justify-center items-center border border-surface-highlight">
           <Handshake size={18} color="white" />
         </TouchableOpacity>
       </View>
@@ -82,59 +83,88 @@ export default function MarketScreen() {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* TOP SEARCH BAR */}
-        <View style={styles.header}>
-          <View style={styles.searchBar}>
+        <View
+          className="flex-row items-center px-6 pt-[60px] pb-5 gap-3"
+          style={{ paddingTop: 25 }}
+        >
+          <View className="flex-1 h-[50px] bg-surface-raised rounded-[15px] border border-border-elevated flex-row items-center px-[15px] gap-[10px]">
             <Search color="#444" size={18} />
-            <Text style={styles.searchText}>Search events or sellers...</Text>
+            <Text className="text-txt-ghost text-[13px] font-semibold">
+              Search events or sellers...
+            </Text>
           </View>
-          <Pressable style={styles.filterBtn}>
+          <Pressable className="w-[50px] h-[50px] bg-surface-raised rounded-[15px] justify-center items-center border border-border-elevated">
             <Filter color="#fff" size={20} />
           </Pressable>
         </View>
 
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Live Listings</Text>
-          <View style={styles.activePulse} />
+        <View className="flex-row items-center px-[25px] mb-5 gap-[10px]">
+          <Text className="text-txt-main text-xl font-black tracking-[-0.5px]">
+            Live Listings
+          </Text>
+          <View className="w-2 h-2 rounded-full bg-status-success shadow-sm shadow-status-success opacity-80" />
         </View>
 
         {/* LISTINGS GRID */}
-        <View style={styles.grid}>
+        <View className="px-5 flex-row flex-wrap justify-between">
           {MARKET_LISTINGS.map((item) => {
             const TierIcon = TIERS[item.tier as keyof typeof TIERS].icon;
             const tierColor = TIERS[item.tier as keyof typeof TIERS].color;
 
             return (
-              <Pressable key={item.id} style={styles.listingCard}>
+              <Pressable
+                key={item.id}
+                className="mb-[25px] bg-surface rounded-[24px] p-2 border border-surface-raised"
+                style={{ width: (width - 55) / 2 }}
+              >
                 <ImageBackground
                   source={{ uri: item.img }}
-                  style={styles.listingImage}
+                  className="h-[160px] w-full mb-3"
                   imageStyle={{ borderRadius: 20 }}
                 >
-                  <BlurView intensity={30} tint="dark" style={styles.tierBadge}>
+                  <BlurView
+                    intensity={30}
+                    tint="dark"
+                    className="absolute top-[10px] left-[10px] flex-row items-center gap-[5px] px-[10px] py-[6px] rounded-[12px] overflow-hidden"
+                  >
                     <TierIcon color={tierColor} size={12} />
-                    <Text style={[styles.tierText, { color: tierColor }]}>
+                    <Text
+                      className="text-[9px] font-black tracking-[1px]"
+                      style={{ color: tierColor }}
+                    >
                       {item.tier}
                     </Text>
                   </BlurView>
                 </ImageBackground>
 
-                <View style={styles.listingInfo}>
-                  <View style={styles.titleRow}>
-                    <Text style={styles.title} numberOfLines={1}>
+                <View className="px-1">
+                  <View className="flex-row justify-between items-center mb-3">
+                    <Text
+                      className="text-txt-main text-[13px] font-extrabold flex-1"
+                      numberOfLines={1}
+                    >
                       {item.title}
                     </Text>
                     <ArrowUpRight color="#444" size={16} />
                   </View>
 
-                  <View style={styles.sellerRow}>
-                    <Text style={styles.sellerLabel}>SELLER</Text>
-                    <Text style={styles.sellerName}>{item.seller}</Text>
+                  <View className="mb-[15px]">
+                    <Text className="text-txt-ghost text-[8px] font-black mb-[2px]">
+                      SELLER
+                    </Text>
+                    <Text className="text-txt-muted text-[11px] font-bold">
+                      {item.seller}
+                    </Text>
                   </View>
 
-                  <View style={styles.priceContainer}>
-                    <Text style={styles.priceValue}>{item.price}</Text>
-                    <View style={styles.buyBtn}>
-                      <Text style={styles.buyBtnText}>BUY</Text>
+                  <View className="flex-row justify-between items-center bg-surface-raised rounded-[12px] p-2">
+                    <Text className="text-txt-main text-[12px] font-black">
+                      {item.price}
+                    </Text>
+                    <View className="bg-surface-inverse px-[10px] py-[5px] rounded-lg">
+                      <Text className="text-txt-inverted text-[9px] font-black">
+                        BUY
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -143,153 +173,8 @@ export default function MarketScreen() {
           })}
         </View>
 
-        <View style={{ height: 100 }} />
+        <View className="h-[100px]" />
       </ScrollView>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#000" },
-  header: { flexDirection: "row", padding: 25, paddingTop: 60, gap: 12 },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 25,
-    paddingTop: 60, // Space for status bar
-    paddingBottom: 20,
-    backgroundColor: "#000",
-    borderBottomWidth: 1,
-    borderColor: "#111",
-  },
-  headerTextContainer: { flex: 1 },
-  headerSubtitle: {
-    color: "#888",
-    fontSize: 10,
-    fontWeight: "800",
-    letterSpacing: 2,
-  },
-  headerTitle: { color: "#fff", fontSize: 28, fontWeight: "900" },
-  iconButton: {
-    width: 45,
-    height: 45,
-    borderRadius: 15,
-    backgroundColor: "#0A0A0A",
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#1A1A1A",
-  },
-
-  searchBar: {
-    flex: 1,
-    height: 50,
-    backgroundColor: "#0A0A0A",
-    borderRadius: 15,
-    borderWidth: 1,
-    borderColor: "#111",
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 15,
-    gap: 10,
-  },
-  searchText: { color: "#444", fontSize: 13, fontWeight: "600" },
-  filterBtn: {
-    width: 50,
-    height: 50,
-    backgroundColor: "#0A0A0A",
-    borderRadius: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#111",
-  },
-
-  sectionHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 25,
-    marginBottom: 20,
-    gap: 10,
-  },
-  sectionTitle: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "900",
-    letterSpacing: -0.5,
-  },
-  activePulse: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: "#00FF88",
-    shadowColor: "#00FF88",
-    shadowRadius: 6,
-    shadowOpacity: 0.8,
-  },
-
-  grid: {
-    paddingHorizontal: 20,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-  },
-  listingCard: {
-    width: (width - 55) / 2,
-    marginBottom: 25,
-    backgroundColor: "#050505",
-    borderRadius: 24,
-    padding: 8,
-    borderWidth: 1,
-    borderColor: "#0A0A0A",
-  },
-  listingImage: { height: 160, width: "100%", marginBottom: 12 },
-  tierBadge: {
-    position: "absolute",
-    top: 10,
-    left: 10,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 5,
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    borderRadius: 12,
-    overflow: "hidden",
-  },
-  tierText: { fontSize: 9, fontWeight: "900", letterSpacing: 1 },
-
-  listingInfo: { paddingHorizontal: 4 },
-  titleRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 12,
-  },
-  title: { color: "#fff", fontSize: 13, fontWeight: "800", flex: 1 },
-
-  sellerRow: { marginBottom: 15 },
-  sellerLabel: {
-    color: "#222",
-    fontSize: 8,
-    fontWeight: "900",
-    marginBottom: 2,
-  },
-  sellerName: { color: "#888", fontSize: 11, fontWeight: "700" },
-
-  priceContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: "#0A0A0A",
-    borderRadius: 12,
-    padding: 8,
-  },
-  priceValue: { color: "#fff", fontSize: 12, fontWeight: "900" },
-  buyBtn: {
-    backgroundColor: "#fff",
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 8,
-  },
-  buyBtnText: { color: "#000", fontSize: 9, fontWeight: "900" },
-});

@@ -8,14 +8,14 @@ import {
   Tickets,
   Wallet,
 } from "lucide-react-native";
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import {
-  Animated,
+import React, { useEffect, useMemo, useState } from "react";
+import { TouchableOpacity, View } from "react-native";
+import Animated, {
   Easing,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 export default function TabLayout() {
   return (
@@ -85,7 +85,7 @@ function TabIcon({
   focused: boolean;
 }) {
   return (
-    <View style={styles.iconContainer}>
+    <View className="items-center justify-center w-11 h-11">
       <Icon color={color} size={24} strokeWidth={focused ? 2.5 : 2} />
     </View>
   );
@@ -101,7 +101,7 @@ function AnimatedTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
     [barWidth, routes.length],
   );
 
-  const pillTranslateX = useRef(new Animated.Value(0)).current;
+  const pillTranslateX = useSharedValue(0);
   const PILL_SIZE = 42;
   const BAR_HEIGHT = 85;
 
@@ -109,37 +109,39 @@ function AnimatedTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
     if (!itemWidth) return;
     const target =
       activeIndex * itemWidth + Math.max(0, (itemWidth - PILL_SIZE) / 2);
-    Animated.timing(pillTranslateX, {
-      toValue: target,
+    pillTranslateX.value = withTiming(target, {
       duration: 400,
       easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    }).start();
+    });
   }, [activeIndex, itemWidth, pillTranslateX]);
+
+  const animatedPillStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: pillTranslateX.value }],
+  }));
 
   return (
     <View
       onLayout={(e) => setBarWidth(e.nativeEvent.layout.width)}
-      style={styles.barContainer}
+      className="absolute bottom-0 left-0 right-0 h-[85px] rounded-t-[32px] overflow-hidden border-t border-x border-white/15"
     >
       <BlurView
         intensity={70}
         tint="dark"
-        style={[StyleSheet.absoluteFill, styles.barBackground]}
+        className="absolute inset-0 rounded-t-[32px]"
       />
 
       <Animated.View
         pointerEvents="none"
+        className="absolute w-[42px] h-[42px] rounded-full bg-white/10 border border-white/10"
         style={[
-          styles.activePill,
           {
             top: (BAR_HEIGHT - PILL_SIZE) / 2,
-            transform: [{ translateX: pillTranslateX }],
           },
+          animatedPillStyle,
         ]}
       />
 
-      <View style={styles.itemsRow}>
+      <View className="flex-1 flex-row items-center justify-around">
         {routes.map((route, index) => {
           const isFocused = activeIndex === index;
           const { options } = descriptors[route.key];
@@ -170,7 +172,8 @@ function AnimatedTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
               accessibilityState={isFocused ? { selected: true } : {}}
               onPress={onPress}
               onLongPress={onLongPress}
-              style={[styles.itemButton, { width: itemWidth || undefined }]}
+              className="items-center justify-center h-11"
+              style={{ width: itemWidth || undefined }}
               activeOpacity={0.7}
             >
               {options.tabBarIcon
@@ -183,54 +186,3 @@ function AnimatedTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  barContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 85,
-    borderTopLeftRadius: 32,
-    borderTopRightRadius: 32,
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-    borderWidth: 1,
-    borderBottomWidth: 0,
-    borderColor: "rgba(255, 255, 255, 0.15)",
-    backgroundColor: "transparent",
-    elevation: 0,
-    paddingTop: 0,
-    overflow: "hidden",
-  },
-  barBackground: {
-    borderTopLeftRadius: 32,
-    borderTopRightRadius: 32,
-  },
-  itemsRow: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-  itemButton: {
-    alignItems: "center",
-    justifyContent: "center",
-    height: 44,
-  },
-  iconContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    height: 44,
-    width: 44,
-  },
-  activePill: {
-    position: "absolute",
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: "rgba(255, 255, 255, 0.12)",
-    borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.1)",
-  },
-});

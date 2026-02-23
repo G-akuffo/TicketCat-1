@@ -1,0 +1,5 @@
+- [x] `app/(tabs)/wallet.tsx` uses NativeWind only
+- [x] No credit card UI is visible
+- [x] Balance is displayed clearly at the top
+- [x] "Top Up" and "Withdraw" buttons are present
+- [x] Transaction history list is displayed with correct coloring

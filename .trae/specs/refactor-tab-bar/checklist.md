@@ -1,0 +1,5 @@
+- [x] `app/(tabs)/_layout.tsx` uses NativeWind and Reanimated
+- [x] No `StyleSheet` usage
+- [x] Tab bar has glassmorphic background
+- [x] Active pill animates smoothly between tabs
+- [x] Icons display correct active/inactive states

@@ -1,0 +1,6 @@
+- [x] `expo-screen-capture` is installed and preventing screenshots
+- [x] Ticket container has perforated/jagged edges
+- [x] Ticket has a dashed line separating the stub
+- [x] QR Code has a pulsing/animated effect
+- [x] Background has a dynamic/moving element
+- [x] A rotating security token is visible

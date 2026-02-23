@@ -1,0 +1,7 @@
+- [x] NativeWind configuration is correct (content paths, global.css)
+- [x] `CategoryButtons` is fully converted to Tailwind
+- [x] `TicketModal` is fully converted to Tailwind
+- [x] `MarketScreen` displays prices in USD (not ETH)
+- [x] `MarketScreen` is fully converted to Tailwind
+- [x] `ExploreScreen` is fully converted to Tailwind
+- [x] App builds and runs without styling errors

@@ -13,7 +13,6 @@ import {
   Dimensions,
   Pressable,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -26,29 +25,33 @@ const { width } = Dimensions.get("window");
 
 const TIERS = {
   GOLD: {
-    main: "#D4AF37",
-    accent: "#00FF88",
+    main: "border-l-gold", // For borderLeftColor logic, we might need dynamic styles or a mapping
+    mainColor: "#D4AF37", // Keeping hex for dynamic border style if needed, or map to class
+    accent: "text-gold-accent",
     label: "PRIORITY ENTRY ACTIVE",
     sub: "VVIP",
     icon: ShieldCheck,
   },
   SILVER: {
-    main: "#C0C0C0",
-    accent: "#00A3FF",
+    main: "border-l-silver",
+    mainColor: "#C0C0C0",
+    accent: "text-silver-accent",
     label: "SILVER PRIORITY ACCESS",
     sub: "VIP",
     icon: Zap,
   },
   BRONZE: {
-    main: "#CD7F32",
-    accent: "#FF7F50",
+    main: "border-l-bronze",
+    mainColor: "#CD7F32",
+    accent: "text-bronze-accent",
     label: "BRONZE ACCESS TIER",
     sub: "PREMIUM",
     icon: Award,
   },
   GENERAL: {
-    main: "#444444",
-    accent: "#FFFFFF",
+    main: "border-l-general",
+    mainColor: "#444444",
+    accent: "text-general-accent",
     label: "GENERAL ADMISSION",
     sub: "REGULAR",
     icon: Info,
@@ -96,14 +99,16 @@ export default function TicketsScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View className="flex-1 bg-background">
       {/* --- STICKY HEADER --- */}
-      <View style={styles.header}>
-        <View style={styles.headerTextContainer}>
-          <Text style={styles.headerSubtitle}>MY</Text>
-          <Text style={styles.headerTitle}>Tickets</Text>
+      <View className="flex-row items-center px-6 pt-[65px] pb-5 bg-background border-b border-border-elevated">
+        <View className="flex-1">
+          <Text className="text-txt-muted text-[10px] font-extrabold tracking-[2px]">
+            MY
+          </Text>
+          <Text className="text-txt-main text-[28px] font-black">Tickets</Text>
         </View>
-        <TouchableOpacity style={styles.iconButton}>
+        <TouchableOpacity className="w-[45px] h-[45px] rounded-[15px] bg-surface-raised justify-center items-center border border-surface-highlight">
           <QrCode size={18} color="white" />
         </TouchableOpacity>
       </View>
@@ -111,22 +116,24 @@ export default function TicketsScreen() {
       <CategoryButtons />
 
       {/* --- MINIMIZED TICKETS LIST --- */}
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView contentContainerStyle={{ padding: 25, paddingTop: 30 }}>
         {tickets.map((t) => (
           <View
             key={t.id}
-            style={[
-              styles.minimizedContainer,
-              { borderLeftColor: TIERS[t.tier as keyof typeof TIERS].main },
-            ]}
+            className="rounded-[14px] mb-6 border-l-[5px] bg-surface-raised overflow-hidden border border-border-elevated"
+            style={{
+              borderLeftColor: TIERS[t.tier as keyof typeof TIERS].mainColor,
+            }}
           >
             <Pressable
-              style={styles.minimizedRow}
+              className="h-20 px-5 flex-row items-center justify-between"
               onPress={() => handleTicketPress(t)}
             >
-              <View style={styles.rowInfo}>
-                <Text style={styles.rowTitle}>{t.title}</Text>
-                <Text style={styles.rowDate}>
+              <View className="gap-1">
+                <Text className="text-txt-main text-[13px] font-extrabold">
+                  {t.title}
+                </Text>
+                <Text className="text-txt-ghost text-[10px] font-bold">
                   {t.date} • {t.time}
                 </Text>
               </View>
@@ -134,28 +141,30 @@ export default function TicketsScreen() {
             </Pressable>
 
             {/* ACTION BAR (Kept exactly as requested) */}
-            <View style={styles.actionBar}>
+            <View className="flex-row h-12 p-1.5 gap-1.5 bg-surface">
               <Pressable
-                style={[styles.actionButton, styles.transferBtn]}
+                className="flex-1 flex-row items-center justify-center rounded-[10px] gap-2 bg-surface-highlight border border-border-highlight"
                 onPress={() => console.log("Transfer")}
               >
                 <Send color="#ccc" size={14} />
-                <Text style={styles.actionTextPop}>TRANSFER</Text>
+                <Text className="text-[#ccc] text-[10px] font-black tracking-[1px]">
+                  TRANSFER
+                </Text>
               </Pressable>
 
               <Pressable
-                style={[styles.actionButton, styles.sellBtn]}
+                className="flex-1 flex-row items-center justify-center rounded-[10px] gap-2 bg-[#080808] border border-[#391818ff]"
                 onPress={() => console.log("Sell")}
               >
                 <Tag color="#888" size={14} />
-                <Text style={[styles.actionTextPop, { color: "#888" }]}>
+                <Text className="text-txt-muted text-[10px] font-black tracking-[1px]">
                   SELL
                 </Text>
               </Pressable>
             </View>
           </View>
         ))}
-        <View style={{ height: 100 }} />
+        <View className="h-[100px]" />
       </ScrollView>
 
       {/* --- NEW EXTERNAL ENLARGED MODAL --- */}
@@ -167,90 +176,3 @@ export default function TicketsScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#000" },
-
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 25,
-    paddingTop: 65, // Adjusted to match your other sticky headers
-    paddingBottom: 20,
-    backgroundColor: "#000",
-    borderBottomWidth: 1,
-    borderColor: "#111",
-  },
-  headerTextContainer: { flex: 1 },
-  headerSubtitle: {
-    color: "#888",
-    fontSize: 10,
-    fontWeight: "800",
-    letterSpacing: 2,
-  },
-  headerTitle: { color: "#fff", fontSize: 28, fontWeight: "900" },
-  iconButton: {
-    width: 45,
-    height: 45,
-    borderRadius: 15,
-    backgroundColor: "#0A0A0A",
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#1A1A1A",
-  },
-
-  scrollContent: { padding: 25, paddingTop: 30 },
-
-  minimizedContainer: {
-    borderRadius: 14,
-    marginBottom: 24,
-    borderLeftWidth: 5,
-    backgroundColor: "#0A0A0A",
-    overflow: "hidden",
-    borderWidth: 1,
-    borderColor: "#111",
-  },
-  minimizedRow: {
-    height: 80,
-    paddingHorizontal: 20,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  rowInfo: { gap: 4 },
-  rowTitle: { color: "#fff", fontSize: 13, fontWeight: "800" },
-  rowDate: { color: "#3d3d3d", fontSize: 10, fontWeight: "700" },
-
-  actionBar: {
-    flexDirection: "row",
-    height: 48,
-    padding: 6,
-    gap: 6,
-    backgroundColor: "#050505",
-  },
-  actionButton: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 10,
-    gap: 8,
-  },
-  transferBtn: {
-    backgroundColor: "#1A1A1A",
-    borderWidth: 1,
-    borderColor: "#333",
-  },
-  sellBtn: {
-    backgroundColor: "#080808",
-    borderWidth: 1,
-    borderColor: "#391818ff",
-  },
-  actionTextPop: {
-    fontSize: 10,
-    fontWeight: "900",
-    letterSpacing: 1,
-    color: "#ccc",
-  },
-});

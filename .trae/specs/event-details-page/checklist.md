@@ -1,0 +1,6 @@
+- [x] Tapping an event card opens the `event/[id]` screen
+- [x] The screen opens as a modal (slides up)
+- [x] Event details (Image, Title, Date, Location) are displayed
+- [x] "Favorite" button toggles state
+- [x] "Buy Tickets" button is visible and clickable
+- [x] Back/Close button works

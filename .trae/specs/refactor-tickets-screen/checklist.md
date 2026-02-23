@@ -1,0 +1,4 @@
+- [x] `app/(tabs)/tickets.tsx` has no `StyleSheet` usage
+- [x] Ticket tiers (Gold, Silver, Bronze) display correct colors using theme tokens
+- [x] "Transfer" and "Sell" buttons are styled correctly
+- [x] TicketModal opens and displays data correctly
