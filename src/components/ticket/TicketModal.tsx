@@ -25,7 +25,8 @@ const TIERS = {
     accent: "#00A3FF",
     label: "VIP",
   },
-  BRONZE: { main: "#CD7F32", accent: "#FF7F50", label: "PREMIUM" },
+  BRONZE: { main: "#CD7F32", accent: "#FF7F50", label: "BRONZE" },
+  ROYAL: { main: "#8B5CF6", accent: "#A78BFA", label: "PREMIUM" },
   GENERAL: { main: "#444444", accent: "#FFFFFF", label: "REGULAR" },
 };
 
@@ -85,6 +86,12 @@ const TicketModal = ({ visible, onClose, ticketData }: any) => {
       accent: "text-bronze-accent",
       icon: "#FF7F50",
     },
+    ROYAL: {
+      main: "text-royal",
+      border: "border-royal",
+      accent: "text-royal-accent",
+      icon: "#A78BFA",
+    },
     GENERAL: {
       main: "text-general",
       border: "border-general",
@@ -93,9 +100,13 @@ const TicketModal = ({ visible, onClose, ticketData }: any) => {
     },
   };
 
-  const tier = TIERS[ticketData.tier as keyof typeof TIERS];
+  const designKey =
+    (ticketData.tierDesign as keyof typeof TIERS) ||
+    (ticketData.tier as keyof typeof TIERS) ||
+    "GENERAL";
+  const tier = TIERS[designKey] || TIERS.GENERAL;
   const tierColors =
-    tierColorMap[ticketData.tier as keyof typeof tierColorMap] ||
+    tierColorMap[designKey as keyof typeof tierColorMap] ||
     tierColorMap.GENERAL;
 
   return (

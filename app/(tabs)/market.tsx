@@ -32,7 +32,7 @@ const MARKET_LISTINGS = [
   {
     id: "1",
     title: "GARDEN GALA",
-    tier: "GOLD",
+    tierDesign: "GOLD",
     price: "$2,550.00",
     seller: "OxAlpha",
     img: "https://images.unsplash.com/photo-1514525253344-a812df99a716?w=600",
@@ -40,7 +40,7 @@ const MARKET_LISTINGS = [
   {
     id: "2",
     title: "NEON MIDNIGHT",
-    tier: "SILVER",
+    tierDesign: "SILVER",
     price: "$1,260.00",
     seller: "CryptoCat",
     img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600",
@@ -48,7 +48,7 @@ const MARKET_LISTINGS = [
   {
     id: "3",
     title: "SOLARIS FEST",
-    tier: "GOLD",
+    tierDesign: "GOLD",
     price: "$3,600.00",
     seller: "VipVault",
     img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600",
@@ -56,7 +56,7 @@ const MARKET_LISTINGS = [
   {
     id: "4",
     title: "JAZZ EVENING",
-    tier: "BRONZE",
+    tierDesign: "BRONZE",
     price: "$450.00",
     seller: "JazzFan99",
     img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600",
@@ -108,8 +108,12 @@ export default function MarketScreen() {
         {/* LISTINGS GRID */}
         <View className="px-5 flex-row flex-wrap justify-between">
           {MARKET_LISTINGS.map((item) => {
-            const TierIcon = TIERS[item.tier as keyof typeof TIERS].icon;
-            const tierColor = TIERS[item.tier as keyof typeof TIERS].color;
+            const TierIcon =
+              TIERS[item.tierDesign as keyof typeof TIERS]?.icon ||
+              TIERS.BRONZE.icon;
+            const tierColor =
+              TIERS[item.tierDesign as keyof typeof TIERS]?.color ||
+              TIERS.BRONZE.color;
 
             return (
               <Pressable
@@ -132,7 +136,7 @@ export default function MarketScreen() {
                       className="text-[9px] font-black tracking-[1px]"
                       style={{ color: tierColor }}
                     >
-                      {item.tier}
+                      {item.tierDesign}
                     </Text>
                   </BlurView>
                 </ImageBackground>

@@ -32,6 +32,14 @@ const TIERS = {
     sub: "VVIP",
     icon: ShieldCheck,
   },
+  ROYAL: {
+    main: "border-l-royal",
+    mainColor: "#8B5CF6",
+    accent: "text-royal-accent",
+    label: "ROYAL PRIORITY ACCESS",
+    sub: "VIP",
+    icon: Send,
+  },
   SILVER: {
     main: "border-l-silver",
     mainColor: "#C0C0C0",
@@ -66,30 +74,37 @@ export default function TicketsScreen() {
     {
       id: "1",
       title: "GHANA VS NIGERIA",
-      tier: "GOLD",
+      tierDesign: "GOLD",
       date: "AUG 24, 2026",
       time: "19:00 GMT",
     },
     {
       id: "2",
       title: "PADEL RAVE",
-      tier: "SILVER",
+      tierDesign: "SILVER",
       date: "AUG 24, 2026",
       time: "14:00 GMT",
     },
     {
       id: "3",
       title: "THE GARDEN GALA: EVENING OF JAZZ",
-      tier: "BRONZE",
+      tierDesign: "BRONZE",
       date: "AUG 24, 2026",
       time: "17:00 GMT",
     },
     {
       id: "4",
       title: "BHIM CONCERT",
-      tier: "GENERAL",
+      tierDesign: "GENERAL",
       date: "AUG 24, 2026",
       time: "20:00 GMT",
+    },
+    {
+      id: "5",
+      title: "DETTY RAVE",
+      tierDesign: "ROYAL",
+      date: "AUG 24, 2026",
+      time: "16:00 GMT",
     },
   ];
 
@@ -122,7 +137,9 @@ export default function TicketsScreen() {
             key={t.id}
             className="rounded-[14px] mb-6 border-l-[5px] bg-surface-raised overflow-hidden border border-border-elevated"
             style={{
-              borderLeftColor: TIERS[t.tier as keyof typeof TIERS].mainColor,
+              borderLeftColor:
+                TIERS[t.tierDesign as keyof typeof TIERS]?.mainColor ||
+                TIERS.GENERAL.mainColor,
             }}
           >
             <Pressable

@@ -30,7 +30,7 @@ module.exports = {
         },
         gold: {
           DEFAULT: "#D4AF37",
-          accent: "#00FF88",
+          accent: "#057e52ff",
         },
         silver: {
           DEFAULT: "#C0C0C0",
@@ -39,6 +39,10 @@ module.exports = {
         bronze: {
           DEFAULT: "#CD7F32",
           accent: "#FF7F50",
+        },
+        royal: {
+          DEFAULT: "#8B5CF6",
+          accent: "#A78BFA",
         },
         general: {
           DEFAULT: "#444444",

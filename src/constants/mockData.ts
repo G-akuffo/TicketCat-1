@@ -4,7 +4,7 @@ export const EVENTS = {
     title: "The Afrofuture Gala",
     date: "Dec 28, 2026",
     time: "19:00 GMT",
-    location: "Labadi Beach",
+    location: "El-Wak Stadium",
     category: "MUSIC",
     image:
       "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop",
@@ -18,6 +18,7 @@ export const EVENTS = {
         price: "$150.00",
         description: "Entry to the main event area + 1 complimentary drink.",
         available: 200,
+        tierDesign: "GENERAL",
       },
       {
         id: "t2",
@@ -26,6 +27,7 @@ export const EVENTS = {
         description:
           "Fast-track entry, VIP lounge access, open bar, and premium seating.",
         available: 50,
+        tierDesign: "GOLD",
       },
       {
         id: "t3",
@@ -34,6 +36,7 @@ export const EVENTS = {
         description:
           "Private cabana for 6, dedicated server, premium bottle service, and backstage access.",
         available: 5,
+        tierDesign: "ROYAL",
       },
     ],
   },
@@ -55,6 +58,7 @@ export const EVENTS = {
         price: "$250.00",
         description: "Reserved seating in the main grandstand.",
         available: 100,
+        tierDesign: "BRONZE",
       },
       {
         id: "t2",
@@ -63,6 +67,7 @@ export const EVENTS = {
         description:
           "Access to the air-conditioned clubhouse with buffet lunch included.",
         available: 30,
+        tierDesign: "SILVER",
       },
     ],
   },
@@ -84,6 +89,7 @@ export const EVENTS = {
         price: "$80.00",
         description: "Access to all panels and exhibition area.",
         available: 500,
+        tierDesign: "GENERAL",
       },
       {
         id: "t2",
@@ -91,6 +97,7 @@ export const EVENTS = {
         price: "$120.00",
         description: "Includes access to technical workshops and hackathon.",
         available: 150,
+        tierDesign: "BRONZE",
       },
       {
         id: "t3",
@@ -99,6 +106,7 @@ export const EVENTS = {
         description:
           "Exclusive networking lounge and startup pitch deck access.",
         available: 20,
+        tierDesign: "GOLD",
       },
     ],
   },
@@ -120,6 +128,7 @@ export const EVENTS = {
         price: "$45.00",
         description: "Includes canvas, paint supplies, and 2 glasses of wine.",
         available: 40,
+        tierDesign: "GENERAL",
       },
       {
         id: "t2",
@@ -128,6 +137,7 @@ export const EVENTS = {
         description:
           "Discounted rate for 2 people. Includes a shared snack platter.",
         available: 10,
+        tierDesign: "BRONZE",
       },
     ],
   },
@@ -149,6 +159,7 @@ export const EVENTS = {
         price: "$20.00",
         description: "Gate fee only. Food and drinks sold separately.",
         available: 1000,
+        tierDesign: "GENERAL",
       },
     ],
   },

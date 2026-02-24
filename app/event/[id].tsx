@@ -19,7 +19,9 @@ export default function EventDetailsScreen() {
   const event = EVENTS[id as keyof typeof EVENTS] || EVENTS["1"];
 
   const handleBuyTicket = (tier: TicketTier, quantity: number) => {
-    console.log(`Buying ${quantity} tickets of tier ${tier.name}`);
+    console.log(
+      `Buying ${quantity} tickets of tier ${tier.name} with design ${tier.tierDesign}`,
+    );
     setIsTicketModalVisible(false);
     // Navigate to checkout or show success
   };
