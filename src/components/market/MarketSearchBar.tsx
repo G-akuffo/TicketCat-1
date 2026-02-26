@@ -1,5 +1,4 @@
 import { Filter, Search } from "lucide-react-native";
-import React from "react";
 import { Pressable, Text, View } from "react-native";
 
 export const MarketSearchBar = () => {

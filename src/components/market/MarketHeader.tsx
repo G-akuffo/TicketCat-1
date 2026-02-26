@@ -1,5 +1,4 @@
 import { Handshake } from "lucide-react-native";
-import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 export const MarketHeader = () => {

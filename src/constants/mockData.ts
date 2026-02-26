@@ -241,3 +241,5 @@ export const MARKET_LISTINGS = [
     img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600",
   },
 ];
+
+export const BOOKMARKED_EVENTS = [EVENTS["2"], EVENTS["5"]];
