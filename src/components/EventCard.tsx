@@ -20,28 +20,32 @@ export const EventCard = ({
   image,
 }: EventCardProps) => (
   <Link href={`/event/${id}`} asChild>
-    <TouchableOpacity activeOpacity={0.9} className="w-[280px]">
-      <View className="h-[200px] rounded-[28px] bg-surface-raised mb-3 border border-border-subtle overflow-hidden">
+    <TouchableOpacity activeOpacity={0.9} className="w-[300px]">
+      <View className="h-[220px] rounded-[32px] bg-surface-raised mb-4 border border-border-subtle overflow-hidden shadow-sm">
         <Image
           source={{ uri: image }}
           className="w-full h-full"
           resizeMode="cover"
         />
-        <View className="absolute top-[15px] left-[15px] bg-surface-inverse/95 px-3 py-[6px] rounded-[20px]">
-          <Text className="text-txt-inverted text-[10px] font-extrabold">
+        <View className="absolute top-4 left-4 bg-surface-inverse/90 px-3 py-1.5 rounded-full">
+          <Text className="text-txt-inverted text-[10px] font-bold tracking-wide">
             {category}
           </Text>
         </View>
       </View>
-      <Text className="text-txt-main text-lg font-bold mb-1">{title}</Text>
-      <View className="flex-row gap-3">
-        <View className="flex-row items-center gap-1">
-          <Calendar size={12} color="#71717a" />
-          <Text className="text-txt-subtle text-xs">{date}</Text>
+      <Text className="text-txt-main text-xl font-bold mb-1.5 leading-tight">
+        {title}
+      </Text>
+      <View className="flex-row gap-4">
+        <View className="flex-row items-center gap-1.5">
+          <Calendar size={14} color="#71717a" />
+          <Text className="text-txt-subtle text-xs font-medium">{date}</Text>
         </View>
-        <View className="flex-row items-center gap-1">
-          <MapPin size={12} color="#71717a" />
-          <Text className="text-txt-subtle text-xs">{location}</Text>
+        <View className="flex-row items-center gap-1.5">
+          <MapPin size={14} color="#71717a" />
+          <Text className="text-txt-subtle text-xs font-medium">
+            {location}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>

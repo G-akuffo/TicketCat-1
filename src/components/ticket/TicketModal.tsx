@@ -1,4 +1,7 @@
-import { usePreventScreenCapture } from "expo-screen-capture";
+import {
+  allowScreenCaptureAsync,
+  preventScreenCaptureAsync,
+} from "expo-screen-capture";
 import {
   Calendar,
   Clock,
@@ -27,11 +30,20 @@ const TIERS = {
   },
   BRONZE: { main: "#CD7F32", accent: "#FF7F50", label: "BRONZE" },
   ROYAL: { main: "#8B5CF6", accent: "#A78BFA", label: "PREMIUM" },
-  GENERAL: { main: "#444444", accent: "#FFFFFF", label: "REGULAR" },
+  GENERAL: { main: "#444444", accent: "#FFFFFF", label: "GENERAL" },
 };
 
 const TicketModal = ({ visible, onClose, ticketData }: any) => {
-  usePreventScreenCapture();
+  useEffect(() => {
+    if (visible) {
+      preventScreenCaptureAsync();
+    } else {
+      allowScreenCaptureAsync();
+    }
+    return () => {
+      allowScreenCaptureAsync();
+    };
+  }, [visible]);
 
   // Animations
   const pulse = useSharedValue(1);

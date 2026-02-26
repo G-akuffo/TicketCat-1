@@ -168,3 +168,41 @@ export const EVENTS = {
 export const FEATURED_EVENTS = [EVENTS["1"], EVENTS["2"]];
 
 export const UPCOMING_EVENTS = [EVENTS["3"], EVENTS["4"], EVENTS["5"]];
+
+export const MY_TICKETS = [
+  {
+    id: "1",
+    title: "GHANA VS NIGERIA",
+    tierDesign: "GOLD",
+    date: "AUG 24, 2026",
+    time: "19:00 GMT",
+  },
+  {
+    id: "2",
+    title: "PADEL RAVE",
+    tierDesign: "SILVER",
+    date: "AUG 24, 2026",
+    time: "14:00 GMT",
+  },
+  {
+    id: "3",
+    title: "THE GARDEN GALA: EVENING OF JAZZ",
+    tierDesign: "BRONZE",
+    date: "AUG 24, 2026",
+    time: "17:00 GMT",
+  },
+  {
+    id: "4",
+    title: "BHIM CONCERT",
+    tierDesign: "GENERAL",
+    date: "AUG 24, 2026",
+    time: "20:00 GMT",
+  },
+  {
+    id: "5",
+    title: "DETTY RAVE",
+    tierDesign: "ROYAL",
+    date: "AUG 24, 2026",
+    time: "16:00 GMT",
+  },
+];

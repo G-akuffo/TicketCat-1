@@ -1,28 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
+const categories = ["All Events", "Music", "Arts", "Sports", "Business"];
+
 const CategoryButtons = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
-    <View className="mb-[5px] mt-5">
+    <View className="mt-4 mb-4">
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        className="max-h-[50px] mb-[25px]"
-        contentContainerClassName="px-5 gap-[10px]"
+        className="max-h-14"
+        contentContainerClassName="px-5 gap-3"
       >
-        <TouchableOpacity className="bg-surface-inverse px-5 py-2.5 rounded-[25px] border border-surface-inverse">
-          <Text className="text-txt-inverted font-bold text-sm">
-            All Events
-          </Text>
-        </TouchableOpacity>
-        {["Music", "Arts", "Sports", "Business"].map((cat) => (
-          <TouchableOpacity
-            key={cat}
-            className="bg-surface-raised px-5 py-2.5 rounded-[25px] border border-border-subtle"
-          >
-            <Text className="text-txt-muted font-medium text-sm">{cat}</Text>
-          </TouchableOpacity>
-        ))}
+        {categories.map((cat, index) => {
+          const isSelected = activeIndex === index;
+          return (
+            <TouchableOpacity
+              key={cat}
+              onPress={() => setActiveIndex(index)}
+              className={`px-5 py-2.5 rounded-[25px] border ${
+                isSelected
+                  ? "bg-surface-inverse border-surface-inverse"
+                  : "bg-surface-raised border-border-subtle"
+              }`}
+            >
+              <Text
+                className={`text-sm ${
+                  isSelected
+                    ? "text-txt-inverted font-bold"
+                    : "text-txt-muted font-medium"
+                }`}
+              >
+                {cat}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
       </ScrollView>
     </View>
   );

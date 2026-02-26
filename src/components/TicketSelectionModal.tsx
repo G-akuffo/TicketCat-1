@@ -2,7 +2,7 @@ import { TicketTier } from "@/src/types/event";
 import { BlurView } from "expo-blur";
 import * as Haptics from "expo-haptics";
 import { Minus, Plus, X } from "lucide-react-native";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Modal,
   ScrollView,
