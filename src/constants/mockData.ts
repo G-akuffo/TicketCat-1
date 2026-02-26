@@ -206,3 +206,38 @@ export const MY_TICKETS = [
     time: "16:00 GMT",
   },
 ];
+
+export const MARKET_LISTINGS = [
+  {
+    id: "1",
+    title: "GARDEN GALA",
+    tierDesign: "GOLD",
+    price: "$2,550.00",
+    seller: "OxAlpha",
+    img: "https://images.unsplash.com/photo-1514525253344-a812df99a716?w=600",
+  },
+  {
+    id: "2",
+    title: "NEON MIDNIGHT",
+    tierDesign: "SILVER",
+    price: "$1,260.00",
+    seller: "CryptoCat",
+    img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600",
+  },
+  {
+    id: "3",
+    title: "SOLARIS FEST",
+    tierDesign: "GOLD",
+    price: "$3,600.00",
+    seller: "VipVault",
+    img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600",
+  },
+  {
+    id: "4",
+    title: "JAZZ EVENING",
+    tierDesign: "BRONZE",
+    price: "$450.00",
+    seller: "JazzFan99",
+    img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600",
+  },
+];
