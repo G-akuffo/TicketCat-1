@@ -1,4 +1,4 @@
-import { ArrowLeft, Heart, Share2 } from "lucide-react-native";
+import { ArrowLeft, Bookmark, Share2 } from "lucide-react-native";
 import { TouchableOpacity, View } from "react-native";
 
 interface EventHeaderProps {
@@ -13,7 +13,7 @@ export function EventHeader({
   onToggleFavorite,
 }: EventHeaderProps) {
   return (
-    <View className="flex-row justify-between items-center px-6 pt-[60px] z-10">
+    <View className="flex-row justify-between items-center px-6 pt-[60px] z-10 absolute w-full">
       <TouchableOpacity
         onPress={onBack}
         className="w-10 h-10 rounded-full bg-black/50 items-center justify-center backdrop-blur-md"
@@ -29,9 +29,9 @@ export function EventHeader({
           onPress={onToggleFavorite}
           className="w-10 h-10 rounded-full bg-black/50 items-center justify-center backdrop-blur-md"
         >
-          <Heart
-            color={isFavorite ? "#FF4444" : "#fff"}
-            fill={isFavorite ? "#FF4444" : "transparent"}
+          <Bookmark
+            color={isFavorite ? "#00FF88" : "#fff"}
+            fill={isFavorite ? "#00FF88" : "transparent"}
             size={20}
           />
         </TouchableOpacity>

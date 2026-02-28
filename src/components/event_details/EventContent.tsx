@@ -82,14 +82,25 @@ export function EventContent({ event }: EventContentProps) {
 
           {/* Organizer */}
           <View className="flex-row items-center gap-3 mt-2 border-t border-white/10 pt-6">
-            <View className="w-10 h-10 rounded-full bg-zinc-800 border border-white/10" />
+            <View className="w-10 h-10 rounded-full bg-zinc-800 border border-white/10 items-center justify-center">
+              <Text className="text-white text-xs font-bold">
+                {event.organizer ? event.organizer[0] : "T"}
+              </Text>
+            </View>
             <View>
               <Text className="text-zinc-500 text-[10px] font-bold tracking-widest uppercase">
                 ORGANIZED BY
               </Text>
-              <Text className="text-white text-sm font-bold">
-                TicketCat Official
-              </Text>
+              <View className="flex-row items-center gap-1.5">
+                <Text className="text-white text-sm font-bold">
+                  {event.organizer || "TicketCat Official"}
+                </Text>
+                {event.isVerified && (
+                  <View className="w-4 h-4 bg-blue-500 rounded-full items-center justify-center">
+                    <Text className="text-white text-[10px] font-bold">✓</Text>
+                  </View>
+                )}
+              </View>
             </View>
           </View>
         </View>

@@ -9,21 +9,20 @@ export default function WalletScreen() {
     <View className="flex-1 bg-background">
       <WalletHeader />
 
-      <ScrollView
-        contentContainerStyle={{ padding: 25, paddingTop: 30 }}
-        showsVerticalScrollIndicator={false}
-      >
+      <View className="px-6 pt-8 pb-4">
         {/* Header Section */}
         <BalanceCard />
 
         {/* Quick Actions */}
         <QuickActions />
+      </View>
 
+      <ScrollView
+        contentContainerStyle={{ paddingHorizontal: 25, paddingBottom: 100 }}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Recent Transactions List */}
         <RecentTransactions />
-
-        {/* Padding for the floating tab bar */}
-        <View className="h-[100px]" />
       </ScrollView>
     </View>
   );

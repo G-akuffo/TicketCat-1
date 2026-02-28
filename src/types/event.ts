@@ -19,5 +19,7 @@ export interface Event {
   image: string;
   description: string;
   price: string;
+  organizer?: string;
+  isVerified?: boolean;
   ticketTiers?: TicketTier[];
 }

@@ -30,13 +30,13 @@ export default function EventDetailsScreen() {
     <View className="flex-1 bg-background">
       <StatusBar barStyle="light-content" />
 
-      <EventHero image={event.image} />
-
       <EventHeader
         onBack={() => router.back()}
         isFavorite={isFavorite}
         onToggleFavorite={() => setIsFavorite(!isFavorite)}
       />
+
+      <EventHero image={event.image} />
 
       <ScrollView
         className="flex-1 pt-[280px]"

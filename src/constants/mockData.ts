@@ -11,6 +11,8 @@ export const EVENTS = {
     description:
       "Join us for an unforgettable night celebrating African culture, music, and art. The Afrofuture Gala brings together the brightest stars and creatives for a seaside extravaganza under the stars. Expect live performances, gourmet cuisine, and a vibrant atmosphere.",
     price: "$150.00",
+    organizer: "Afrofuture",
+    isVerified: true,
     ticketTiers: [
       {
         id: "t1",
@@ -51,6 +53,8 @@ export const EVENTS = {
     description:
       "Experience the elegance of the sport of kings at the annual Polo Invitational. Enjoy thrilling matches, exclusive VIP lounges, and a day of high fashion and networking.",
     price: "$250.00",
+    organizer: "Accra Polo Club",
+    isVerified: true,
     ticketTiers: [
       {
         id: "t1",
@@ -82,6 +86,8 @@ export const EVENTS = {
     description:
       "The premier technology conference in West Africa. Connect with industry leaders, startups, and investors. Panels, workshops, and networking sessions throughout the day.",
     price: "$80.00",
+    organizer: "Tech West Africa",
+    isVerified: true,
     ticketTiers: [
       {
         id: "t1",
@@ -121,6 +127,8 @@ export const EVENTS = {
     description:
       "Unleash your inner artist at our Sip & Paint Night. No experience required! All materials provided, along with complimentary wine and snacks.",
     price: "$45.00",
+    organizer: "Creative Minds",
+    isVerified: false,
     ticketTiers: [
       {
         id: "t1",
@@ -152,6 +160,8 @@ export const EVENTS = {
     description:
       "End your week with the soothing sounds of Highlife music. Live bands, local delicacies, and a relaxed atmosphere perfect for families and friends.",
     price: "$20.00",
+    organizer: "Osu Community",
+    isVerified: false,
     ticketTiers: [
       {
         id: "t1",
@@ -163,11 +173,55 @@ export const EVENTS = {
       },
     ],
   },
+  "6": {
+    id: "6",
+    title: "Accra Fashion Week",
+    date: "Oct 15, 2026",
+    time: "18:00 GMT",
+    location: "Kempinski Hotel",
+    category: "ARTS",
+    image: "https://images.unsplash.com/photo-1537832816519-689ad163238b?w=800",
+    description: "Showcasing the best of African fashion.",
+    price: "$100.00",
+    organizer: "Fashion GH",
+    isVerified: true,
+    ticketTiers: [],
+  },
+  "7": {
+    id: "7",
+    title: "Chale Wote Festival",
+    date: "Aug 20, 2026",
+    time: "10:00 GMT",
+    location: "James Town",
+    category: "ARTS",
+    image: "https://images.unsplash.com/photo-1551187030-74722883f726?w=800",
+    description: "Street art festival.",
+    price: "Free",
+    organizer: "Accra Arts",
+    isVerified: true,
+    ticketTiers: [],
+  },
+  "8": {
+    id: "8",
+    title: "Gaming Tournament",
+    date: "Nov 12, 2026",
+    time: "12:00 GMT",
+    location: "Accra Mall",
+    category: "SPORTS",
+    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800",
+    description: "E-sports competition.",
+    price: "$30.00",
+    organizer: "Gamers Union",
+    isVerified: false,
+    ticketTiers: [],
+  },
 };
 
-export const FEATURED_EVENTS = [EVENTS["1"], EVENTS["2"]];
+export const ALL_EVENTS = Object.values(EVENTS);
 
-export const UPCOMING_EVENTS = [EVENTS["3"], EVENTS["4"], EVENTS["5"]];
+export const FEATURED_EVENTS = [EVENTS["1"], EVENTS["2"], EVENTS["6"]];
+
+export const UPCOMING_EVENTS = [EVENTS["3"], EVENTS["4"]];
 
 export const MY_TICKETS = [
   {
