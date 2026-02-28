@@ -8,6 +8,22 @@ interface EventContentProps {
 }
 
 export function EventContent({ event }: EventContentProps) {
+  // Format Date: "1 Jan 2026"
+  let formattedDate = event.date;
+  if (event.date && event.date.includes("-")) {
+    const dateObj = new Date(event.date);
+    if (!isNaN(dateObj.getTime())) {
+      formattedDate = dateObj.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    }
+  }
+
+  // Format Time: "19:00" (remove seconds if present)
+  const formattedTime = event.time ? event.time.slice(0, 5) : event.time;
+
   return (
     <View className="px-6 pb-6">
       <BlurView
@@ -41,12 +57,16 @@ export function EventContent({ event }: EventContentProps) {
             <View className="flex-1 bg-white/5 p-3 rounded-2xl border border-white/5 gap-1">
               <Calendar size={18} color="#71717a" />
               <Text className="text-zinc-400 text-xs font-medium">Date</Text>
-              <Text className="text-white text-sm font-bold">{event.date}</Text>
+              <Text className="text-white text-sm font-bold">
+                {formattedDate}
+              </Text>
             </View>
             <View className="flex-1 bg-white/5 p-3 rounded-2xl border border-white/5 gap-1">
               <Clock size={18} color="#71717a" />
               <Text className="text-zinc-400 text-xs font-medium">Time</Text>
-              <Text className="text-white text-sm font-bold">{event.time}</Text>
+              <Text className="text-white text-sm font-bold">
+                {formattedTime}
+              </Text>
             </View>
           </View>
 
